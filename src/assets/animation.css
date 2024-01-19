@@ -1,0 +1,33 @@
+@keyframes glowing-button {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 400% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+.card-item {
+	opacity: 0;
+	transform: translateY(60px);
+	transition: opacity 0.5s ease-in-out,
+		transform 0.5s ease-in-out;
+}
+
+.show-card {
+	opacity: 1;
+	transform: translateY(0);
+}
+.show-card:nth-child(1) {
+	transition-delay: 1s;
+}
+
+.show-card:nth-child(2) {
+	transition-delay: 2s;
+}
+
+.show-card:nth-child(3) {
+	transition-delay: 3s;
+}
