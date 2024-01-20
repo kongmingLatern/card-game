@@ -1,0 +1,108 @@
+.violet-card {
+	width: 200px;
+	height: 300px;
+	background: linear-gradient(45deg, #6e42c1, #af7bff);
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(174, 127, 255, 0.8);
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 10px;
+	color: white;
+	font-family: 'Arial', sans-serif;
+}
+.violet-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.1),
+		transparent
+	);
+	z-index: 1;
+	pointer-events: none;
+}
+.violet-card:hover {
+	transform: scale(1.05);
+	transition: transform 0.3s ease-in-out;
+}
+
+.blue-card {
+	width: 200px;
+	height: 300px;
+	background: linear-gradient(45deg, #3a7bd5, #3a6073);
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(58, 123, 213, 0.8);
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 10px;
+	color: white;
+	font-family: 'Arial', sans-serif;
+}
+.blue-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.1),
+		transparent
+	);
+	z-index: 1;
+	pointer-events: none;
+}
+
+.blue-card:hover {
+	transform: scale(1.05);
+	transition: transform 0.3s ease-in-out;
+}
+
+.gold-card {
+	width: 200px;
+	height: 300px;
+	background: linear-gradient(45deg, #ffd700, #ffa500);
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 10px;
+	color: white;
+	font-family: 'Arial', sans-serif;
+}
+
+.gold-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.5),
+		transparent
+	);
+	z-index: 1;
+	pointer-events: none;
+}
+.gold-card:hover {
+	transform: scale(1.05);
+	transition: transform 0.3s ease-in-out;
+}

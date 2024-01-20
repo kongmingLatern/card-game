@@ -6,15 +6,18 @@ const { Meta } = Card;
 
 export interface CardImageProps extends CardProps {
   description?: string
+  quantity?: 'blue' | 'violet' | 'gold'
 }
+
 
 
 const App: React.FC<CardImageProps> = (props) => {
 
-  const { cover, title, description, ...rest } = props
+  const { quantity, cover, title, description, ...rest } = props
 
   return (
     <Card
+      className={`${quantity ? quantity + '-card' : ''}`}
       hoverable
       cover={cover}
       {...rest}
