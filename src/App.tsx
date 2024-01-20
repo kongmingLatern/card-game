@@ -10,16 +10,18 @@ function App() {
   const [data, setData] = useState<any[]>([])
   const [parent] = useAutoAnimate(/* optional config */)
   const [intervalId, setIntervalId] = useState<any>(null);
+  const [total, setTotal] = useState(0)
 
   const [current, setCurrent] = useState<any[]>([])
 
   const cardProps = ({ quantity, item }: Record<string, any>) => {
     return {
-      cover: <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />,
-      title: item,
+      cover: <img alt="example" src={item.src} style={{ width: '100%', height: '100%' }} />,
+      title: item.name,
       description: quantity,
       style: {
-        width: 150
+        width: 250,
+        height: 500,
       }
     }
   }
@@ -56,6 +58,7 @@ function App() {
   function handleOne() {
     data.length = 0
     setNum(1)
+    setTotal(total + 1)
     startInterval(1)
     current.push(computeProOne())
     setCurrent(current)
@@ -66,6 +69,7 @@ function App() {
   function handleTen() {
     current.length = 0
     data.length = 0
+    setTotal(total + 10)
     setNum(10)
     startInterval(10)
     for (let i = 0; i < 10; i++) {
@@ -80,23 +84,32 @@ function App() {
   return (
     <>
       <h3 className="text-center text-24px font-bold my-10px">三月抽卡姬</h3>
-      <div className='relative flex flex-col w-100dvw h-500px text-center lh-500px color-white'>
+      <div className='flex flex-col w-1300px mx-auto text-center color-white min-h-1008px'>
         <main className="flex flex-justify-center">
-          <Space ref={parent}>
+          <Space ref={parent} wrap>
             {
               data.map((i, index) => {
-                return <CardImage key={i}  {...cardProps(current[index].currentCard)} quantity={current[index].currentCard.quantity} />
+                return (
+                  <CardImage key={i}  {...cardProps(current[index].currentCard)} quantity={current[index].currentCard.quantity} />
+                )
               })
             }
           </Space>
         </main>
 
-        {/* 按扭区  */}
-        <div className='absolute right-0 bottom-0 inline-flex p-2 w-full'>
-          <button className="btn btn-accent mr-10px w-1/2" onClick={handleOne}>抽取一次</button>
-          <button className="btn btn-warning w-1/2" onClick={handleTen}>抽取十次</button>
-        </div>
+
       </div>
+
+      <div>
+        当前抽数:{total}
+      </div>
+
+      {/* 按扭区  */}
+      <div className='inline-flex p-2 w-full'>
+        <button className="btn btn-accent mr-10px w-1/2" onClick={handleOne}>抽取一次</button>
+        <button className="btn btn-warning w-1/2" onClick={handleTen}>抽取十次</button>
+      </div>
+
 
     </>
   )

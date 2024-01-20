@@ -1,11 +1,10 @@
-const goldenList = ['golden1', 'golden2']
-const violetList = ['violet1', 'violet2']
-const blueList = ['blue1', 'blue2', 'blue3']
+import { blueList, goldenList, violetList } from './list'
+
 export const currentCard = {
 	// 品质
-	quantity: undefined,
+	quantity: undefined as any,
 	// 物品
-	item: undefined,
+	item: undefined as any,
 }
 
 export const globalLogic = {
