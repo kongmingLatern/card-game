@@ -104,7 +104,11 @@ export function computeProOne() {
 			// 	globalLogic.totoalCount
 			// )
 			initAwardedGolden()
-			return
+
+			return {
+				currentCard: { ...currentCard },
+				currentCount: globalLogic.accNoGoldenCount,
+			}
 		}
 	}
 	//是否出紫

@@ -102,6 +102,9 @@ function App() {
 
       <div>
         当前抽数:{total}
+        <p>蓝色:{current.filter(i => i.currentCard.quantity === 'blue').length}</p>
+        <p>紫色:{current.filter(i => i.currentCard.quantity === 'violet').length}</p>
+        <p>金色:{current.filter(i => i.currentCard.quantity === 'gold').length}</p>
       </div>
 
       {/* 按扭区  */}
