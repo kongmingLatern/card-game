@@ -1,3 +1,5 @@
+import * as path from 'path'
+
 import { defineConfig } from 'vite'
 import { presetDaisy } from 'unocss-preset-daisy'
 import { presetUno } from 'unocss'
@@ -12,4 +14,9 @@ export default defineConfig({
 			safelist: ['color-blue', 'color-violet'],
 		}),
 	],
+	resolve: {
+		alias: {
+			'@': path.resolve(__dirname, './src'),
+		},
+	},
 })
