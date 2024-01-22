@@ -1,7 +1,7 @@
+import { Image, Space } from 'antd'
 import { useCallback, useEffect, useState } from "react"
 
 import CardImage from "./components/CardImage"
-import { Space } from 'antd'
 import { computeProOne } from "./context/logic"
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
@@ -11,12 +11,23 @@ function App() {
   const [parent] = useAutoAnimate(/* optional config */)
   const [intervalId, setIntervalId] = useState<any>(null);
   const [total, setTotal] = useState(0)
+  const [blue, setBlue] = useState(0)
+  const [violet, setViolet] = useState(0)
+  const [gold, setGold] = useState(0)
 
   const [current, setCurrent] = useState<any[]>([])
 
   const cardProps = ({ quantity, item }: Record<string, any>) => {
     return {
-      cover: <img alt="example" src={item.src} style={{ width: '100%', height: '100%' }} />,
+      cover: <Image
+        alt="图片加载失败"
+        preview={{
+          mask: <div>点击预览</div>
+        }}
+        src={item.src}
+        style={{ width: '100%', height: '100%' }
+        }
+      />,
       title: item.name,
       description: quantity,
       style: {
@@ -62,7 +73,9 @@ function App() {
     startInterval(1)
     current.push(computeProOne())
     setCurrent(current)
-    console.log(current);
+    setBlue(blue + current.filter(i => i.currentCard.quantity === 'blue').length)
+    setViolet(violet + current.filter(i => i.currentCard.quantity === 'violet').length)
+    setGold(gold + current.filter(i => i.currentCard.quantity === 'gold').length)
 
   }
 
@@ -78,7 +91,9 @@ function App() {
       )
     }
     setCurrent(current)
-    console.log(current);
+    setBlue(blue + current.filter(i => i.currentCard.quantity === 'blue').length)
+    setViolet(violet + current.filter(i => i.currentCard.quantity === 'violet').length)
+    setGold(gold + current.filter(i => i.currentCard.quantity === 'gold').length)
   }
 
   return (
@@ -102,13 +117,13 @@ function App() {
 
       <div>
         当前抽数:{total}
-        <p>蓝色:{current.filter(i => i.currentCard.quantity === 'blue').length}</p>
-        <p>紫色:{current.filter(i => i.currentCard.quantity === 'violet').length}</p>
-        <p>金色:{current.filter(i => i.currentCard.quantity === 'gold').length}</p>
+        <p>蓝色:{blue}</p>
+        <p>紫色:{violet}</p>
+        <p>金色:{gold}</p>
       </div>
 
       {/* 按扭区  */}
-      <div className='inline-flex p-2 w-full'>
+      <div className='inline-flex p-2 w-full overflow-hidden'>
         <button className="btn btn-accent mr-10px w-1/2" onClick={handleOne}>抽取一次</button>
         <button className="btn btn-warning w-1/2" onClick={handleTen}>抽取十次</button>
       </div>
