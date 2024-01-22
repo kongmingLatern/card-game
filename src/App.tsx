@@ -17,11 +17,12 @@ function App() {
 
   const [current, setCurrent] = useState<any[]>([])
 
-  const cardProps = ({ quantity, item }: Record<string, any>) => {
+  const cardProps = ({ item }: Record<string, any>) => {
     return {
       cover: <Image
         alt="图片加载失败"
         preview={{
+          imageRender: (origin) => item.imageRender ? <Image src={item.imageRender || item.src} style={{ width: '50%', margin: '0 auto' }} preview={false} /> : origin,
           mask: <div>点击预览</div>
         }}
         src={item.src}
@@ -29,7 +30,6 @@ function App() {
         }
       />,
       title: item.name,
-      description: quantity,
       style: {
         width: 250,
         height: 500,
