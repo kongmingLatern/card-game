@@ -1,3 +1,16 @@
 @import './assets/animation.css';
 @import './assets/button.css';
 @import './assets/card.css';
+
+@font-face {
+	font-family: za;
+	src: url('./assets/yf.ttf');
+}
+
+#root {
+	font-family: za;
+}
+
+.za {
+	font-family: za;
+}

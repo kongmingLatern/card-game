@@ -14,6 +14,7 @@ import SR3 from '@/assets/super/舞会.png'
 import SSR1 from '@/assets/supersuper/更迭.png'
 import SSR2 from '@/assets/supersuper/棺中之花.png'
 import SSR3 from '@/assets/supersuper/猎宴.png'
+import SSR3Render from '@/assets/supersuper/猎宴（横版）.png'
 import SSR4 from '@/assets/supersuper/血月之下.png'
 import SSR4Render from '@/assets/supersuper/血月之下（横版）.png'
 import SSR5 from '@/assets/supersuper/游戏时间.png'
@@ -31,6 +32,7 @@ export const goldenList = [
 	{
 		name: '猎宴',
 		src: SSR3,
+		imageRender: SSR3Render,
 	},
 	{
 		name: '血月之下',
@@ -98,4 +100,16 @@ export const blueList = [
 		name: '游戏',
 		src: N10,
 	},
+]
+
+export const allList = [
+	...goldenList.map(i => {
+		return { ...i, quantity: 'gold' }
+	}),
+	...violetList.map(i => {
+		return { ...i, quantity: 'violet' }
+	}),
+	...blueList.map(i => {
+		return { ...i, quantity: 'blue' }
+	}),
 ]

@@ -37,12 +37,12 @@ export function computeProOne() {
 	)
 	//是否出金 出金大保低
 	if (globalLogic.accNoGoldenCount >= 90) {
-		console.log(
-			'出金啦/大保低：',
-			globalLogic.probability_golden,
-			'~' + randomGolden + ' 抽卡次数：',
-			globalLogic.totoalCount
-		)
+		// console.log(
+		// 	'出金啦/大保低：',
+		// 	globalLogic.probability_golden,
+		// 	'~' + randomGolden + ' 抽卡次数：',
+		// 	globalLogic.totoalCount
+		// )
 		globalLogic.awardColor = 'gold'
 		currentCard.quantity = 'gold'
 		currentCard.item =
@@ -65,12 +65,12 @@ export function computeProOne() {
 					Math.floor(Math.random() * goldenList.length)
 				]
 
-			console.log(
-				'出金啦/小保低：',
-				currentCard,
-				'------抽卡次数',
-				globalLogic.totoalCount
-			)
+			// console.log(
+			// 	'出金啦/小保低：',
+			// 	currentCard,
+			// 	'------抽卡次数',
+			// 	globalLogic.totoalCount
+			// )
 			initAwardedGolden()
 			return {
 				currentCard: { ...currentCard },
@@ -90,12 +90,12 @@ export function computeProOne() {
 					Math.floor(Math.random() * goldenList.length)
 				]
 
-			console.log(
-				'出金',
-				currentCard,
-				'------抽卡次数',
-				globalLogic.totoalCount
-			)
+			// console.log(
+			// 	'出金',
+			// 	currentCard,
+			// 	'------抽卡次数',
+			// 	globalLogic.totoalCount
+			// )
 
 			// console.log(
 			// 	'出金啦/欧皇：',
@@ -120,12 +120,12 @@ export function computeProOne() {
 				Math.floor(Math.random() * violetList.length)
 			]
 
-		console.log(
-			'出紫/欧皇：',
-			currentCard,
-			'--------抽卡次数：',
-			globalLogic.totoalCount
-		)
+		// console.log(
+		// 	'出紫/欧皇：',
+		// 	currentCard,
+		// 	'--------抽卡次数：',
+		// 	globalLogic.totoalCount
+		// )
 
 		// console.log(
 		// 	'出紫/欧皇：',
@@ -148,12 +148,12 @@ export function computeProOne() {
 		currentCard.item =
 			blueList[Math.floor(Math.random() * blueList.length)]
 
-		console.log(
-			'出蓝',
-			currentCard,
-			'------抽卡次数',
-			globalLogic.totoalCount
-		)
+		// console.log(
+		// 	'出蓝',
+		// 	currentCard,
+		// 	'------抽卡次数',
+		// 	globalLogic.totoalCount
+		// )
 	}
 	globalLogic.accNoGoldenCount++
 

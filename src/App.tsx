@@ -1,7 +1,9 @@
-import { Image, Space } from 'antd'
+import { FloatButton, Image, Space } from 'antd'
 import { useCallback, useEffect, useState } from "react"
 
 import CardImage from "./components/CardImage"
+import DrawerImage from './components/DrawerImage'
+import { allList } from './context/list'
 import { computeProOne } from "./context/logic"
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
@@ -15,6 +17,9 @@ function App() {
   const [violet, setViolet] = useState(0)
   const [gold, setGold] = useState(0)
 
+  const [open, setOpen] = useState(false)
+  const [currentCard, setCurrentCard] = useState<any[]>([])
+
   const [current, setCurrent] = useState<any[]>([])
 
   const cardProps = ({ item }: Record<string, any>) => {
@@ -22,8 +27,16 @@ function App() {
       cover: <Image
         alt="图片加载失败"
         preview={{
-          imageRender: (origin) => item.imageRender ? <Image src={item.imageRender || item.src} style={{ width: '50%', margin: '0 auto' }} preview={false} /> : origin,
-          mask: <div>点击预览</div>
+          imageRender: (origin) => {
+
+            if (item.imageRender) {
+              // console.log(origin, info);
+              return <Image src={item.imageRender || item.src} style={{ width: '80%', margin: '0 auto' }} preview={false} />
+            }
+
+            return origin
+          },
+          mask: <div>点击预览</div>,
         }}
         src={item.src}
         style={{ width: '100%', height: '100%' }
@@ -41,7 +54,6 @@ function App() {
     clearInterval(intervalId)
     setIntervalId(null)
   }, [intervalId])
-
 
 
   useEffect(() => {
@@ -76,7 +88,7 @@ function App() {
     setBlue(blue + current.filter(i => i.currentCard.quantity === 'blue').length)
     setViolet(violet + current.filter(i => i.currentCard.quantity === 'violet').length)
     setGold(gold + current.filter(i => i.currentCard.quantity === 'gold').length)
-
+    setCurrentCard([...currentCard, ...current])
   }
 
   function handleTen() {
@@ -91,6 +103,7 @@ function App() {
       )
     }
     setCurrent(current)
+    setCurrentCard([...currentCard, ...current])
     setBlue(blue + current.filter(i => i.currentCard.quantity === 'blue').length)
     setViolet(violet + current.filter(i => i.currentCard.quantity === 'violet').length)
     setGold(gold + current.filter(i => i.currentCard.quantity === 'gold').length)
@@ -98,10 +111,12 @@ function App() {
 
   return (
     <>
-      <h3 className="text-center text-24px font-bold my-10px">三月抽卡姬</h3>
-      <div className='flex flex-col w-1300px mx-auto text-center color-white min-h-1008px'>
-        <main className="flex flex-justify-center">
-          <Space ref={parent} wrap>
+      <h3 className="text-center text-24px font-bold my-10px">
+        <span>三月抽卡姬</span>
+      </h3>
+      <div className='flex flex-col w-1350px mx-auto text-center color-white min-h-1024px'>
+        <main className="w-1350px min-h-1024px">
+          <Space ref={parent} wrap size={'large'} className="w-1350px min-h-1024px">
             {
               data.map((i, index) => {
                 return (
@@ -111,11 +126,9 @@ function App() {
             }
           </Space>
         </main>
-
-
       </div>
 
-      <div>
+      <div className='font-mono'>
         当前抽数:{total}
         <p>蓝色:{blue}</p>
         <p>紫色:{violet}</p>
@@ -124,10 +137,13 @@ function App() {
 
       {/* 按扭区  */}
       <div className='inline-flex p-2 w-full overflow-hidden'>
-        <button className="btn btn-accent mr-10px w-1/2" onClick={handleOne}>抽取一次</button>
-        <button className="btn btn-warning w-1/2" onClick={handleTen}>抽取十次</button>
+        <button className="btn btn-accent mr-10px w-1/2 text-22px" onClick={handleOne}>抽取一次</button>
+        <button className="btn btn-warning w-1/2 text-22px" onClick={handleTen}>抽取十次</button>
       </div>
 
+      <FloatButton shape='square' description={'查看图鉴'} onClick={() => setOpen(true)} />
+
+      <DrawerImage open={open} setOpen={setOpen} allList={allList} current={currentCard} />
 
     </>
   )

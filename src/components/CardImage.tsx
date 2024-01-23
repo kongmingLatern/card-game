@@ -11,7 +11,7 @@ export interface CardImageProps extends CardProps {
 
 const App: React.FC<CardImageProps> = (props) => {
 
-  const { quantity, cover, title, description, ...rest } = props
+  const { quantity, cover, title, ...rest } = props
 
   return (
     <Card
@@ -21,8 +21,7 @@ const App: React.FC<CardImageProps> = (props) => {
       {...rest}
     >
       <Meta
-        title={<h3 className={`color-white font-bold`}>{title}</h3>}
-        description={<p className='color-white'>{description}</p>}
+        title={<h3 className={`color-${quantity === 'gold' ? 'red' : 'white'} font-bold za text-25px`}>{title}</h3>}
       />
     </Card>
   )
