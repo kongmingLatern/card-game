@@ -11,7 +11,7 @@ export default defineConfig({
 		react(),
 		unocss({
 			presets: [presetUno(), presetDaisy()],
-			safelist: ['color-blue', 'color-violet'],
+			safelist: ['color-blue', 'color-violet', 'color-red'],
 		}),
 	],
 	resolve: {
