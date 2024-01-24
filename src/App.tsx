@@ -17,6 +17,8 @@ function App() {
   const [violet, setViolet] = useState(0)
   const [gold, setGold] = useState(0)
 
+  const [currentNum, setCurrentNum] = useState(0)
+
   const [open, setOpen] = useState(false)
   const [currentCard, setCurrentCard] = useState<any[]>([])
 
@@ -31,10 +33,13 @@ function App() {
 
             if (item.imageRender) {
               // console.log(origin, info);
-              return <Image src={item.imageRender || item.src} style={{ width: '80%', margin: '0 auto' }} preview={false} />
+              return <Image src={item.imageRender || item.src} style={{ width: '90%', margin: '0 auto' }} preview={false} />
             }
 
             return origin
+          },
+          toolbarRender: (origin) => {
+            return item.imageRender ? null : origin
           },
           mask: <div>点击预览</div>,
         }}
@@ -78,6 +83,15 @@ function App() {
     }
   };
 
+  useEffect(() => {
+
+    setCurrentNum(allList.filter(list => {
+      return currentCard.some(c => {
+        return c.currentCard.item.name === list.name
+      })
+    }).length)
+  }, [currentCard])
+
   function handleOne() {
     data.length = 0
     setNum(1)
@@ -114,9 +128,9 @@ function App() {
       <h3 className="text-center text-24px font-bold my-10px">
         <span>三月抽卡姬</span>
       </h3>
-      <div className='flex flex-col w-1350px mx-auto text-center color-white min-h-1024px'>
-        <main className="w-1350px min-h-1024px">
-          <Space ref={parent} wrap size={'large'} className="w-1350px min-h-1024px">
+      <div className='flex flex-col flex-wrap sm:w-100vw md:w-100vw xs:w-100vw lg:w-100vw xl:w-1350px  mx-auto text-center color-white min-h-1024px'>
+        <main className='min-h-1024px'>
+          <Space ref={parent} wrap size={[16, 20]} className='justify-center'>
             {
               data.map((i, index) => {
                 return (
@@ -137,11 +151,13 @@ function App() {
 
       {/* 按扭区  */}
       <div className='inline-flex p-2 w-full overflow-hidden'>
-        <button className="btn btn-accent mr-10px w-1/2 text-22px" onClick={handleOne}>抽取一次</button>
-        <button className="btn btn-warning w-1/2 text-22px" onClick={handleTen}>抽取十次</button>
+        <button disabled={currentNum === allList.length} className="btn btn-accent mr-10px w-1/2 text-22px" onClick={handleOne}>抽取一次</button>
+        <button disabled={currentNum === allList.length} className="btn btn-warning w-1/2 text-22px" onClick={handleTen}>抽取十次</button>
       </div>
 
-      <FloatButton shape='square' description={'查看图鉴'} onClick={() => setOpen(true)} />
+      <FloatButton shape='square' badge={{
+        count: <span className='color-white bg-red-500 p-1 rounded'>{currentNum + '/' + allList.length}</span>
+      }} description={'查看图鉴'} onClick={() => setOpen(true)} />
 
       <DrawerImage open={open} setOpen={setOpen} allList={allList} current={currentCard} />
 
