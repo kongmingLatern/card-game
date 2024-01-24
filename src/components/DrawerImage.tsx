@@ -33,46 +33,49 @@ export default function DrawerImage(props) {
       onClose={onClose}
       open={open}
       key={'top'}
-      height={1125}
+      height={'100vh'}
+      styles={{
+        body: {
+          padding: '0'
+        }
+      }}
     >
-      <div className='flex flex-col w-1350px mx-auto text-center color-white min-h-1024px'>
-        <main className="w-1350px min-h-1024px">
-          <Space wrap size={'large'} className="w-1350px min-h-1024px">
-            {
-              allList.map((i, index) => {
-                return <CardImage
-                  key={index}
-                  quantity={i.quantity}
-                  cover={
-                    <Image
-                      alt="图片加载失败"
-                      preview={current.find(c => c.currentCard.item.name === i.name) ? {
-                        imageRender: (origin) => {
-                          if (i.imageRender) {
-                            return <Image src={i.imageRender || i.src} style={{ width: '80%', margin: '0 auto' }} preview={false} />
-                          }
+      <main className="flex flex-col flex-wrap sm:w-100vw md:w-95vw xs:w-95vw lg:w-95vw xl:w-1350px mx-auto text-center color-white min-h-1024px">
+        <Space wrap size={'large'} className="justify-center">
+          {
+            allList.map((i, index) => {
+              return <CardImage
+                key={index}
+                quantity={i.quantity}
+                cover={
+                  <Image
+                    alt="图片加载失败"
+                    preview={current.find(c => c.currentCard.item.name === i.name) ? {
+                      imageRender: (origin) => {
+                        if (i.imageRender) {
+                          return <Image src={i.imageRender || i.src} style={{ width: '80%', margin: '0 auto' }} preview={false} />
+                        }
 
-                          return origin
-                        },
-                        mask: <div>点击预览</div>,
-                      } : false}
-                      src={i.src}
-                      style={{ width: '100%', height: '100%' }
-                      }
-                    />}
-                  title={i.name}
-                  style={
-                    {
-                      width: 250,
-                      height: 500,
-                      filter: current.find(c => c.currentCard.item.name === i.name) ? 'brightness(1) ' : 'brightness(0.5)'
-                    }}
-                />
-              })
-            }
-          </Space>
-        </main>
-      </div>
+                        return origin
+                      },
+                      mask: <div>点击预览</div>,
+                    } : false}
+                    src={i.src}
+                    style={{ width: '100%', height: '100%' }
+                    }
+                  />}
+                title={i.name}
+                style={
+                  {
+                    width: 250,
+                    height: 500,
+                    filter: current.find(c => c.currentCard.item.name === i.name) ? 'brightness(1) ' : 'brightness(0.5)'
+                  }}
+              />
+            })
+          }
+        </Space>
+      </main>
     </Drawer>
 
   )
