@@ -13,6 +13,14 @@ export default defineConfig({
 		unocss({
 			presets: [presetUno(), presetDaisy()],
 			safelist: ['color-blue', 'color-violet', 'color-red'],
+			theme: {
+				breakpoints: {
+					sm: '320px',
+					md: '640px',
+					lg: '960px',
+					xl: '1280px',
+				},
+			},
 		}),
 		minipic({
 			sharpOptions: {
