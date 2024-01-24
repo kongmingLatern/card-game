@@ -18,7 +18,6 @@ export default function DrawerImage(props) {
         return c.currentCard.item.name === list.name
       })
     })
-    console.log('has', hasSelected);
     if (hasSelected && current.length !== 0 && !isFinish) {
       // NOTE: 全收集
       message.success(`恭喜你,已经全图鉴啦!总抽数:${current.length}`)
@@ -31,7 +30,6 @@ export default function DrawerImage(props) {
     <Drawer
       title="图鉴一览"
       placement={'top'}
-      closable={false}
       onClose={onClose}
       open={open}
       key={'top'}

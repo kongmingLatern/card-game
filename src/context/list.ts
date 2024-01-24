@@ -11,6 +11,11 @@ import N9 from '@/assets/normal/星星眼.png'
 import SR1 from '@/assets/super/剪影.png'
 import SR2 from '@/assets/super/躺躺.png'
 import SR3 from '@/assets/super/舞会.png'
+import SR4 from '@/assets/super/彩窗.png'
+import SR4Render from '@/assets/super/彩窗（横版）.png'
+import SR5 from '@/assets/super/幻想的世界.png'
+import SR5Render from '@/assets/super/幻想的世界（横版）.png'
+import SR6 from '@/assets/super/油画.png'
 import SSR1 from '@/assets/supersuper/更迭.png'
 import SSR2 from '@/assets/supersuper/棺中之花.png'
 import SSR3 from '@/assets/supersuper/猎宴.png'
@@ -57,6 +62,20 @@ export const violetList = [
 	{
 		name: '舞会',
 		src: SR3,
+	},
+	{
+		name: '彩窗',
+		src: SR4,
+		imageRender: SR4Render,
+	},
+	{
+		name: '幻想的世界',
+		src: SR5,
+		imageRender: SR5Render,
+	},
+	{
+		name: '油画',
+		src: SR6,
 	},
 ]
 export const blueList = [
