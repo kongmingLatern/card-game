@@ -1,3 +1,4 @@
+import { Image, notification } from 'antd'
 import { blueList, goldenList, violetList } from './list'
 
 export const currentCard = {
@@ -47,9 +48,20 @@ export function computeProOne() {
 		currentCard.quantity = 'gold'
 		currentCard.item =
 			goldenList[
-				Math.floor(Math.random() * goldenList.length)
+			Math.floor(Math.random() * goldenList.length)
 			]
 		initAwardedGolden()
+		notification.open({
+			message: '出金啦',
+			description: (<div className='text-center'>
+				<h3 className='text-24px text-center'>
+					恭喜你,抽中了{' '}
+					<span className='font-bold color-gold'>{`${currentCard.item.name}`}</span>
+				</h3>
+				<Image src={currentCard.item.src} width={'200px'} />
+			</div>),
+			duration: 5,
+		})
 		return {
 			currentCard: { ...currentCard },
 			currentCount: globalLogic.accNoGoldenCount,
@@ -62,7 +74,7 @@ export function computeProOne() {
 			currentCard.quantity = 'gold'
 			currentCard.item =
 				goldenList[
-					Math.floor(Math.random() * goldenList.length)
+				Math.floor(Math.random() * goldenList.length)
 				]
 
 			// console.log(
@@ -72,6 +84,17 @@ export function computeProOne() {
 			// 	globalLogic.totoalCount
 			// )
 			initAwardedGolden()
+			notification.open({
+				message: '出金啦(小保底)',
+				description: (<div className='text-center'>
+					<h3 className='text-24px text-center'>
+						恭喜你,抽中了{' '}
+						<span className='font-bold color-gold'>{`${currentCard.item.name}`}</span>
+					</h3>
+					<Image src={currentCard.item.src} width={'200px'} />
+				</div>),
+				duration: 5,
+			})
 			return {
 				currentCard: { ...currentCard },
 				currentCount: globalLogic.accNoGoldenCount,
@@ -87,7 +110,7 @@ export function computeProOne() {
 			currentCard.quantity = 'gold'
 			currentCard.item =
 				goldenList[
-					Math.floor(Math.random() * goldenList.length)
+				Math.floor(Math.random() * goldenList.length)
 				]
 
 			// console.log(
@@ -104,6 +127,17 @@ export function computeProOne() {
 			// 	globalLogic.totoalCount
 			// )
 			initAwardedGolden()
+			notification.open({
+				message: '出金啦(欧皇)',
+				description: (<div className='text-center'>
+					<h3 className='text-24px text-center'>
+						恭喜你,抽中了{' '}
+						<span className='font-bold color-gold'>{`${currentCard.item.name}`}</span>
+					</h3>
+					<Image src={currentCard.item.src} width={'200px'} />
+				</div>),
+				duration: 5
+			})
 
 			return {
 				currentCard: { ...currentCard },
@@ -117,7 +151,7 @@ export function computeProOne() {
 		currentCard.quantity = 'violet'
 		currentCard.item =
 			violetList[
-				Math.floor(Math.random() * violetList.length)
+			Math.floor(Math.random() * violetList.length)
 			]
 
 		// console.log(
