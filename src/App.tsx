@@ -1,4 +1,4 @@
-import { FloatButton, Image, Space } from 'antd'
+import { Button, FloatButton, Image, Space } from 'antd'
 import { useCallback, useEffect, useState } from "react"
 
 import CardImage from "./components/CardImage"
@@ -151,8 +151,9 @@ function App() {
 
       {/* 按扭区  */}
       <div className='inline-flex p-2 w-full overflow-hidden'>
-        <button disabled={currentNum === allList.length} className="btn btn-accent mr-10px w-1/2 text-22px" onClick={handleOne}>抽取一次</button>
-        <button disabled={currentNum === allList.length} className="btn btn-warning w-1/2 text-22px" onClick={handleTen}>抽取十次</button>
+        <Button disabled={currentNum === allList.length} className="h-50px rounded-lg bg-green-300 mr-10px w-1/2 text-22px hover:opacity-[0.9] za"
+          onClick={handleOne}>抽取一次</Button>
+        <Button disabled={currentNum === allList.length} className="h-50px rounded-lg bg-red-500 w-1/2 text-22px color-white hover:opacity-[0.9] za" onClick={handleTen}>抽取十次</Button>
       </div>
 
       <FloatButton shape='square' badge={{

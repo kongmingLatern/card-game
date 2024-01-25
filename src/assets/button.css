@@ -1,4 +1,4 @@
-button {
+/* button {
 	padding: 0.6em 2em;
 	border: none;
 	outline: none;
@@ -15,6 +15,11 @@ button {
 button:hover {
 	opacity: 0.9;
 }
+
 button:active {
 	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
 }
+
+.active {
+	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+} */
