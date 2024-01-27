@@ -77,7 +77,7 @@ function App() {
         } else {
           setData((prevData) => [...prevData, prevData.length]);
         }
-      }, 1000);
+      }, 500);
 
       setIntervalId(newIntervalId);
     }
@@ -97,11 +97,16 @@ function App() {
     setNum(1)
     setTotal(total + 1)
     startInterval(1)
-    current.push(computeProOne())
+    const res = computeProOne()
+    current.push(res)
     setCurrent(current)
-    setBlue(blue + current.filter(i => i.currentCard.quantity === 'blue').length)
-    setViolet(violet + current.filter(i => i.currentCard.quantity === 'violet').length)
-    setGold(gold + current.filter(i => i.currentCard.quantity === 'gold').length)
+    if (res.currentCard.quantity === 'blue') {
+      setBlue(blue + 1)
+    } else if (res.currentCard.quantity === 'violet') {
+      setViolet(violet + 1)
+    } else if (res.currentCard.quantity === 'gold') {
+      setGold(gold + 1)
+    }
     setCurrentCard([...currentCard, ...current])
   }
 
@@ -128,20 +133,18 @@ function App() {
       <h3 className="text-center text-24px font-bold my-10px">
         <span>三月抽卡姬</span>
       </h3>
-      <div className='flex flex-col flex-wrap sm:w-100vw md:w-100vw xs:w-100vw lg:w-100vw xl:w-1350px  mx-auto text-center color-white min-h-1024px'>
-        <main className='min-h-1024px'>
-          <Space ref={parent} wrap size={[16, 20]} className='justify-center'>
-            {
-              data.map((i, index) => {
-                return (
-                  <CardImage key={i}  {...cardProps(current[index].currentCard)} quantity={current[index].currentCard.quantity} />
-                )
-              })
-            }
-          </Space>
-        </main>
-      </div>
 
+      <div className='flex flex-col flex-wrap sm:w-100vw md:w-100vw xs:w-100vw lg:w-100vw xl:w-1350px mx-auto text-center color-white' style={{ minHeight: '75vh' }}>
+        <Space ref={parent} wrap size={[16, 20]} className='justify-center min-h-1024px' style={{ minHeight: '75vh' }}>
+          {
+            data.map((i, index) => {
+              return (
+                <CardImage key={i}  {...cardProps(current[index].currentCard)} quantity={current[index].currentCard.quantity} />
+              )
+            })
+          }
+        </Space>
+      </div>
       <div className='font-mono'>
         当前抽数:{total}
         <p>蓝色:{blue}</p>
